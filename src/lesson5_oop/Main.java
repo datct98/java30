@@ -12,22 +12,26 @@ public class Main {
 
         Employee[] employees = new Employee[n];
         for (int i = 0; i < n; i++) {
-            System.out.println("Mời b nhập tên công nhân: ");
-            String name = scanner.nextLine();
-            System.out.println("Mời b nhập tuổi: ");
-            int age = Integer.parseInt(scanner.nextLine());
-            System.out.println("Mời b nhập địa chỉ: ");
-            String address = scanner.nextLine();
-            System.out.println("Mời b nhập nơi làm việc: ");
-            String place = scanner.nextLine();
-            System.out.println("Mời b nhập số năm kn: ");
-            double exp = Double.parseDouble(scanner.nextLine());
-            Employee employee = new Employee(name, age, address, place, exp);
+            Employee employee = inputInfo(scanner);
             employees[i] = employee;
         }
         for (int i = 0; i < n; i++) {
             System.out.println(employees[i]);
         }
 
+    }
+
+    public static Employee inputInfo(Scanner scanner){
+        System.out.println("Mời b nhập tên công nhân: ");
+        String name = scanner.nextLine();
+        System.out.println("Mời b nhập tuổi: ");
+        int age = Integer.parseInt(scanner.nextLine());
+        System.out.println("Mời b nhập địa chỉ: ");
+        String address = scanner.nextLine();
+        System.out.println("Mời b nhập nơi làm việc: ");
+        String place = scanner.nextLine();
+        System.out.println("Mời b nhập số năm kn: ");
+        double exp = Double.parseDouble(scanner.nextLine());
+        return new Employee(name, age, address, place, exp);
     }
 }
