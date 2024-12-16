@@ -29,6 +29,7 @@ public class Main {
                     System.out.println(students);
                     break;
                 case 3:
+                    studentService.updateNameStudent(scanner, students);
                     break;
                 case 4:
                     break;
