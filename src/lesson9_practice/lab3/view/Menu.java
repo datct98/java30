@@ -26,7 +26,7 @@ public class Menu {
                 workers.add(worker);
                 break;
             case 2:
-                workerService.upSalary(scanner, workers);
+                workerService.modifySalary(scanner, workers, "+");
                 break;
             case 3:
                 break;

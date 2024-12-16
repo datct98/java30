@@ -14,18 +14,24 @@ public class WorkerService {
         return new Worker(name, salary);
     }
 
-    public void upSalary(Scanner scanner, ArrayList<Worker> workers){
-        System.out.println("MỜi b nhậ[ id: ");
+    public void modifySalary(Scanner scanner, ArrayList<Worker> workers, String type){
+        System.out.println("MỜi b nhập id: ");
         int id = Integer.parseInt(scanner.nextLine());
         Worker worker = findById(id, workers);
         if(worker == null){
             System.out.println("K tìm thấy công nhân có id: "+id);
         } else {
-            System.out.println("Mời b nhập số tiền muốn tăng: ");
-            double money =Double.parseDouble( scanner.nextLine());
-            worker.setSalary(worker.getSalary()+money);
-        }
+            if(type.equals("-")){
+                System.out.println("Mời b nhập số tiền muốn giảm: ");
+                double money =Double.parseDouble( scanner.nextLine());
+                worker.setSalary(worker.getSalary() - money);
+            } else {
+                System.out.println("Mời b nhập số tiền muốn tăng: ");
+                double money =Double.parseDouble( scanner.nextLine());
+                worker.setSalary(worker.getSalary() + money);
+            }
 
+        }
     }
 
     public Worker findById(int id, ArrayList<Worker> workers){
