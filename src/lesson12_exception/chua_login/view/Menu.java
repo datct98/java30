@@ -1,6 +1,8 @@
 package lesson12_exception.chua_login.view;
 
+import lesson12_exception.chua_login.entities.Product;
 import lesson12_exception.chua_login.entities.User;
+import lesson12_exception.chua_login.service.ProductService;
 import lesson12_exception.chua_login.service.UserService;
 import lesson12_exception.chua_login.utils.Constant;
 
@@ -9,16 +11,17 @@ import java.util.Scanner;
 
 public class Menu {
     UserService userService = new UserService();
+    ProductService productService = new ProductService();
 
-    public void displayMenu(Scanner scanner, ArrayList<User> users){
+    public void displayMenu(Scanner scanner, ArrayList<User> users, ArrayList<Product> products){
         System.out.println("1 - Đăng nhập\n" +
                 "\n" +
                 "2 - Đăng ký\n");
         System.out.println("Mời b chọn:");
-        selectMenu(scanner, users);
+        selectMenu(scanner, users, products);
     }
 
-    public void selectMenu(Scanner scanner, ArrayList<User> users){
+    public void selectMenu(Scanner scanner, ArrayList<User> users, ArrayList<Product> products){
         int choose = Integer.parseInt(scanner.nextLine());
         switch (choose){
             case 1:
@@ -29,6 +32,8 @@ public class Menu {
                         displayMenuForAdmin();
                     } else if( Constant.ROLE_CUSTOMER== user.getRole()){
                         displayMenuForCustomer();
+                    } else if(Constant.ROLE_SELLER == user.getRole()){
+                        displayMenuForSeller(scanner, products);
                     }
                 }
                 break;
@@ -58,7 +63,28 @@ public class Menu {
 
     public void displayMenuForCustomer(){
         System.out.println("1- Xem sản phẩm");
-        System.out.println("2- Mua sản phẩm");
+        System.out.println("2- Xem chi tiết sản phẩm");
+    }
+
+    public void displayMenuForSeller(Scanner scanner, ArrayList<Product> products) {
+        System.out.println("1- Xem sản phẩm");
+        System.out.println("2- Chỉnh sửa giá sản phẩm");
+        System.out.println("3- Xóa sp");
+        System.out.println("Mời b lựa chọn: ");
+        selectMenuForSeller(scanner,products);
+    }
+
+    public void selectMenuForSeller(Scanner scanner, ArrayList<Product> products){
+        int choose = Integer.parseInt(scanner.nextLine());
+        switch (choose){
+            case 1:
+                productService.createProduct(scanner, products);
+                break;
+            case 2:
+
+                break;
+
+        }
     }
 
 }
